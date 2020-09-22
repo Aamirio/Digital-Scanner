@@ -8,5 +8,5 @@ Digital Scanner is:
 ------------------------------------------------------------------------------------------------------------------------
 ### How to open project in Intellij
 
-* Click on File -> New -> Project from existing sources -> double-click on pom.xml in Converter directory
+* Click on File -> New -> Project from existing sources -> double-click on pom.xml in DigitalScanner directory
 ------------------------------------------------------------------------------------------------------------------------
