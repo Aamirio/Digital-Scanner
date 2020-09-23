@@ -1,5 +1,7 @@
 package com.scanner.digital;
 
+import com.scanner.digital.extractor.Extractor;
+
 import java.io.*;
 
 /**
@@ -7,6 +9,8 @@ import java.io.*;
  *
  */
 public class FileScanner {
+
+    private Extractor extractor;
 
     /**
      * Scans file contents and prints desired characters to console.
@@ -17,6 +21,20 @@ public class FileScanner {
     public boolean scanFileContents(String filePath) {
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(filePath).getAbsolutePath()))) {
+
+            StringBuilder chunk = new StringBuilder();
+            String line;
+
+            System.out.println();
+            while( (line = br.readLine()) != null ) {
+                chunk.append(line);
+                chunk.append("\n");
+            }
+
+            String extractedText = extractor.extract(chunk.toString());
+
+            System.out.println(extractedText);
+
             return true;
         }
 
