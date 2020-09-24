@@ -31,7 +31,7 @@ public class FileScanner {
                 chunk.append("\n");
             }
 
-            String extractedText = extractor.extract(chunk.toString());
+            String extractedText = extractor.extract(chunk.toString(), 9, 3);
 
             System.out.println(extractedText);
 

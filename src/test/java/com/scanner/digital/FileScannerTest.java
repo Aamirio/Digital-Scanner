@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -59,11 +60,11 @@ public class FileScannerTest {
 
         final String filePath = "src/test/resources/singleChunkNineDigits.txt";
 
-        when(extractor.extract(anyString())).thenReturn("000000000");
+        when(extractor.extract(anyString(), anyInt(), anyInt())).thenReturn("000000000");
 
         assertThat(fileScanner.scanFileContents(filePath)).isTrue();
         assertThat(output.toString()).isEqualTo("\n000000000\n");
-        verify(extractor).extract(expectedChunk);
+        verify(extractor).extract(expectedChunk, 9, 3);
     }
 
     @Test
