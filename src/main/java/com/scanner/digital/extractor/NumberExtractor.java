@@ -1,5 +1,7 @@
 package com.scanner.digital.extractor;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 /**
  * Extracts digital numbers
  */
+@Component
 public class NumberExtractor implements Extractor {
 
     @Override

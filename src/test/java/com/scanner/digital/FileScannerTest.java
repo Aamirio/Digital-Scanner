@@ -54,7 +54,7 @@ public class FileScannerTest {
     public void shouldPrintDigitsToConsole_whenFileContainsSingleChunkOfDigits() {
 
         final String expectedChunk =
-                " _  _  _  _  _  _  _  _  _\n" +
+                " _  _  _  _  _  _  _  _  _ \n" +
                 "| || || || || || || || || |\n" +
                 "|_||_||_||_||_||_||_||_||_|\n";
 
