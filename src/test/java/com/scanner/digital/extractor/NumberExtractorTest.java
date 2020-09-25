@@ -35,4 +35,18 @@ public class NumberExtractorTest {
         assertThat(extractedText).isNotEmpty();
         assertThat(extractedText).isEqualTo("123456789");
     }
+
+    @Test
+    public void shouldReturnQuestionMark_whenGivenTextContainsUnrecognisedDigit() {
+
+        final String inputText =
+                        "    _  _     _  _  _     _ \n" +
+                        "  | _| _||_||_ |_   ||_||_|\n" +
+                        "  ||_  _|  | _||_|  ||_| _|\n";
+
+        final String extractedText = extractor.extract(inputText, 9, 3);
+
+        assertThat(extractedText).isNotEmpty();
+        assertThat(extractedText).isEqualTo("1234567?9");
+    }
 }

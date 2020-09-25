@@ -2,6 +2,7 @@ package com.scanner.digital.extractor;
 
 public enum DigitalNumber {
 
+    ERROR( "?", "?"),
     ZERO ("0",
             " _ \n" +
                   "| |\n" +

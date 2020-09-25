@@ -42,7 +42,7 @@ public class NumberExtractor implements Extractor {
         digitalChars.forEach(dc -> {
             String character = Arrays.stream(DigitalNumber.values())
                     .filter(n -> n.value.equals(dc))
-                    .findAny().orElse(null).name;
+                    .findAny().orElse(DigitalNumber.ERROR).name;
 
             extractedText.append(character);
         });
