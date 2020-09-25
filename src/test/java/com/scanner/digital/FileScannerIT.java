@@ -39,4 +39,13 @@ public class FileScannerIT {
         assertThat(fileScanner.scanFileContents(filePath)).isTrue();
         assertThat(output.toString()).isEqualTo("\n000000000\n");
     }
+
+    @Test
+    public void shouldPrintDigitsToConsole_whenFileContainsMultipleChunksOfDigits() {
+
+        final String filePath = "src/test/resources/multipleChunksNineDigits.txt";
+
+        assertThat(fileScanner.scanFileContents(filePath)).isTrue();
+        assertThat(output.toString()).isEqualTo("\n000000000\n123456789\n");
+    }
 }

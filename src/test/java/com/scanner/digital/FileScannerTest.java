@@ -68,6 +68,31 @@ public class FileScannerTest {
     }
 
     @Test
+    public void shouldPrintDigitsToConsole_whenFileContainsMultipleChunksOfDigits() {
+
+        final String expectedChunk1 =
+                        " _  _  _  _  _  _  _  _  _ \n" +
+                        "| || || || || || || || || |\n" +
+                        "|_||_||_||_||_||_||_||_||_|\n";
+
+        final String expectedChunk2 =
+                        "    _  _     _  _  _  _  _ \n" +
+                        "  | _| _||_||_ |_   ||_||_|\n" +
+                        "  ||_  _|  | _||_|  ||_| _|\n";
+
+        final String filePath = "src/test/resources/multipleChunksNineDigits.txt";
+
+        when(extractor.extract(expectedChunk1, 9, 3)).thenReturn("000000000");
+        when(extractor.extract(expectedChunk2, 9, 3)).thenReturn("123456789");
+
+        assertThat(fileScanner.scanFileContents(filePath)).isTrue();
+        assertThat(output.toString()).isEqualTo("\n000000000\n123456789\n");
+
+        verify(extractor).extract(expectedChunk1, 9, 3);
+        verify(extractor).extract(expectedChunk2, 9, 3);
+    }
+
+    @Test
     public void shouldReturnFalseAndPrintErrorToConsole_whenInvalidFilePathProvided() {
 
         final String filePath = "src/test/resources/iDontExist.txt";

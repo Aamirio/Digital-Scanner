@@ -29,23 +29,32 @@ public class FileScanner {
 
         final int noOfChars = 9;
         final int charWidth = 3;
+        final int charHeight = 3;
         final int lineLength = noOfChars * charWidth;
+        final int chunkLength = lineLength * charHeight;
 
         try (BufferedReader br = new BufferedReader(new FileReader(new File(filePath).getAbsolutePath()))) {
 
+            StringBuilder extractedText = new StringBuilder();
             StringBuilder chunk = new StringBuilder();
             String line;
 
-            System.out.println();
             while( (line = br.readLine()) != null ) {
-                if (line.length() < lineLength) { line = padLineWithWhiteSpace(line, lineLength); }
-                chunk.append(line);
-                chunk.append("\n");
+
+                if (!line.equals("")) {
+                    if (line.length() < lineLength) { line = padLineWithWhiteSpace(line, lineLength); }
+                    chunk.append(line);
+                    chunk.append("\n");
+                }
+
+                if (chunk.length() == chunkLength + charHeight) {
+                    extractedText.append("\n");
+                    extractedText.append(extractor.extract(chunk.toString(), noOfChars, charWidth));
+                    chunk = new StringBuilder();
+                }
             }
 
-            String extractedText = extractor.extract(chunk.toString(), noOfChars, charWidth);
-
-            System.out.println(extractedText);
+            System.out.println(extractedText.toString());
 
             return true;
         }
